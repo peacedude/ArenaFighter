@@ -12,8 +12,13 @@ namespace ArenaFighter
         Fight fight = new Fight();
 
         private int enemyHP;
+        private int heroHP;
+        private int enemyStrength;
+        private int heroStrength;
 
         private int diceThrow;
+
+        
 
         public int ThrowDice()
         {
@@ -21,15 +26,114 @@ namespace ArenaFighter
             return diceThrow;
         }
         
-        public void DoBattle()
+        public void DoRound(int hStr, int eStr, int hHP, int eHP, int hDmg, int eDmg, string name)
         {
-            enemyHP = fight.enemyHP();
+            HeroHP = hHP;
+            enemyHP = eHP;
+            int heroDice = ThrowDice();
+            int enemyDice = ThrowDice();
+            int heroRoll = heroDice + hStr;
+            int enemyRoll = enemyDice + eStr;
+            if(heroDice + hStr > enemyDice + eStr)
+            {
+                enemyHP = eHP - hDmg;
+
+                Console.WriteLine("----------\n" + "Rolls: You " + heroRoll + " (" + hStr + "+" + heroDice + ") vs "
+                    + name + " " + enemyRoll + "(" + eStr + "+" + enemyRoll + ")");
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("You deal " + hDmg + " to " + name);
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.Write("Remaining Health: You(" + heroHP + "), " + name + " (");
+                if (enemyHP <= 0)
+                {
+                    Console.Write("Dead");
+                    Console.Write(")\n----------\n");
+                }
+                else
+                    Console.Write(enemyHP + ")\n----------\n");
+                Console.ReadKey(true);
+            }
+            else if(heroDice + hStr < enemyDice + eStr)
+            {
+                heroHP = hHP - eDmg;
+                Console.WriteLine("----------\n" + "Rolls: You " + heroRoll + " (" + hStr + "+" + heroDice + ") vs "
+                    + name + " " + enemyRoll + "(" + eStr + "+" + enemyRoll + ")");
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine(name + " deals " + eDmg + " to " + "you");
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.Write("Remaining Health: You (");
+                    if(heroHP <= 0)
+                {
+                    Console.Write("Dead");
+                    Console.Write("), " + name + " (" + enemyHP + ")\n----------\n");
+                }
+                    else
+                        Console.Write(heroHP + "), " + name + " (" + enemyHP + ")\n----------\n");
+                Console.ReadKey(true);
+            }
+            else
+            {
+                Console.WriteLine("----------");
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("You both strike and miss");
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.WriteLine("----------\n");
+
+                Console.ReadKey(true);
+            }
 
                 
         }
-        public void Test()
+        public int EnemyHP
         {
-            
+            get
+            {
+                return enemyHP;
+            }
+
+            set
+            {
+                enemyHP = value;
+            }
+        }
+
+        public int HeroHP
+        {
+            get
+            {
+                return heroHP;
+            }
+
+            set
+            {
+                heroHP = value;
+            }
+        }
+
+        public int EnemyStrength
+        {
+            get
+            {
+                return enemyStrength;
+            }
+
+            set
+            {
+                enemyStrength = value;
+            }
+        }
+
+        public int HeroStrength
+        {
+            get
+            {
+                return heroStrength;
+            }
+
+            set
+            {
+                heroStrength = value;
+            }
         }
 
     }

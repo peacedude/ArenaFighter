@@ -11,6 +11,7 @@ namespace ArenaFighter
         static void Main(string[] args)
         {
             string heroName = null;
+            Console.ForegroundColor = ConsoleColor.White;
             do
             {
                 Console.Clear();
@@ -21,35 +22,58 @@ namespace ArenaFighter
             CharGen hero = new CharGen();
             hero.CreateCharacter(heroName);
             hero.SetKeepOn(true);
+
             hero.GetMenu();
+           
+            
+
             if(hero.GetKeepOn() == true)
             {
-                do
+                while (hero.Health >= 0 && hero.GetKeepOn() == true)
                 {
                     CharGen enemy = new CharGen();
                     Fight fight = new Fight();
                     enemy.CreateCharacter(null);
-                    fight.SetHero(hero.GetHealth(), hero.GetStrength(), hero.GetDamage());
-                    fight.SetEnemy(enemy.GetHealth(), enemy.GetStrength(), enemy.GetDamage());
-                    fight.Battle();
+                    enemy.Gold = 1;
+                    fight.SetHero(hero.Health, hero.Strength, hero.Damage);
+                    fight.SetEnemy(enemy.Health, enemy.Strength, enemy.Damage, enemy.Name);
+                    
                     Console.Clear();
                     Console.WriteLine("Player:");
                     hero.GetChar();
                     Console.WriteLine("Enemy:");
                     enemy.GetChar();
-                    Console.ReadKey(true);
 
-                    hero.SetHealth(fight.heroHP());
-                    enemy.SetHealth(fight.enemyHP());
-                    if(enemy.GetHealth() <= 0)
+                    Console.WriteLine("Press any key to attack... \n");
+
+                    Console.ReadKey(true);
+                    Console.Write("\r" + new string(' ', Console.WindowWidth - 1) + "\r");
+
+                    fight.Battle();
+
+                    hero.Health = fight.heroHealth;
+                    enemy.Health = fight.enemyHealth;
+                    if(enemy.Health <= 0)
                     {
-                        hero.AddKill(enemy.GetName());
+                        hero.AddKill(enemy.Name);
+                        Console.WriteLine("You defeated " + enemy.Name + " in the arena!");
+                        Console.ReadKey(true);
                         hero.AddScore();
+                        hero.Gold = enemy.Gold + hero.Gold;
+                        hero.Health = hero.MaxHealth;
+
+                        hero.GetMenu();
+                    }
+                    if (hero.Health <= 0)
+                    {
+                        Console.WriteLine(enemy.Name + "killed you in the arena!");
+                        hero.SetKeepOn(false);
+                        hero.Killer = enemy.Name;
                     }
                     
-                    hero.GetMenu();
+                    
                 
-                } while (hero.GetHealth() >= 0 && hero.GetKeepOn() == true);
+                } 
             }
             hero.GetStats();
 
