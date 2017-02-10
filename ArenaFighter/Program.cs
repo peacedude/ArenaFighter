@@ -24,10 +24,10 @@ namespace ArenaFighter
             hero.SetKeepOn(true);
 
             hero.GetMenu();
-           
-            
 
-            if(hero.GetKeepOn() == true)
+
+
+            if (hero.GetKeepOn() == true)
             {
                 while (hero.Health >= 0 && hero.GetKeepOn() == true)
                 {
@@ -37,7 +37,7 @@ namespace ArenaFighter
                     enemy.Gold = 1;
                     fight.SetHero(hero.Health, hero.Strength, hero.Damage);
                     fight.SetEnemy(enemy.Health, enemy.Strength, enemy.Damage, enemy.Name);
-                    
+
                     Console.Clear();
                     Console.WriteLine("Player:");
                     hero.GetChar();
@@ -53,7 +53,7 @@ namespace ArenaFighter
 
                     hero.Health = fight.heroHealth;
                     enemy.Health = fight.enemyHealth;
-                    if(enemy.Health <= 0)
+                    if (enemy.Health <= 0)
                     {
                         hero.AddKill(enemy.Name);
                         Console.WriteLine("You defeated " + enemy.Name + " in the arena!");
@@ -63,6 +63,7 @@ namespace ArenaFighter
                         hero.Health = hero.MaxHealth;
 
                         hero.GetMenu();
+
                     }
                     if (hero.Health <= 0)
                     {
@@ -70,10 +71,10 @@ namespace ArenaFighter
                         hero.SetKeepOn(false);
                         hero.Killer = enemy.Name;
                     }
-                    
-                    
-                
-                } 
+
+
+
+                }
             }
             hero.GetStats();
 

@@ -152,15 +152,15 @@ namespace ArenaFighter
             {
                 Round round = new Round();
                 round.DoRound(heroStrength, enemyStrength, heroHealth, enemyHealth, heroDamage, enemyDamage, enemyName);
-                
+
                 {
                     if (round.HeroHP < HeroHealth)
                         heroHealth = heroHealth - enemyDamage;
                     else if (round.EnemyHP < EnemyHealth)
                         EnemyHealth = EnemyHealth - HeroDamage;
-                    
-               }
-             }
+
+                }
+            }
         }
     }
 }

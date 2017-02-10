@@ -195,7 +195,7 @@ namespace ArenaFighter
             if (gold >= GoldCost)
             {
                 Console.WriteLine("\nPress D To Upgrade Damage. Cost: " + goldCost);
-                
+
             }
 
             endLoop = false;
@@ -232,7 +232,7 @@ namespace ArenaFighter
         {
             Console.Clear();
             Console.WriteLine("Final statistics:\n\nName: " + Name + "\nHealth: " + MaxHealth + "\nStrength: " + Strength + "\nDamage: " + Damage + "\nGold: " + gold + "\n\nScore: " + score + "\n");
-            if(kills.Count > 0)
+            if (kills.Count > 0)
             {
                 Console.WriteLine("You killed: ");
             }
@@ -314,7 +314,7 @@ namespace ArenaFighter
                 enemyLastNames[9] = "Westerberg";
 
 
-                Name = enemyNames[rnd.Next(0, 12)] + " " + enemyLastNames[rnd.Next(0,10)];
+                Name = enemyNames[rnd.Next(0, 12)] + " " + enemyLastNames[rnd.Next(0, 10)];
 
             }
             else

@@ -18,14 +18,14 @@ namespace ArenaFighter
 
         private int diceThrow;
 
-        
+
 
         public int ThrowDice()
         {
             diceThrow = rnd.Next(1, 6);
             return diceThrow;
         }
-        
+
         public void DoRound(int hStr, int eStr, int hHP, int eHP, int hDmg, int eDmg, string name)
         {
             HeroHP = hHP;
@@ -34,7 +34,7 @@ namespace ArenaFighter
             int enemyDice = ThrowDice();
             int heroRoll = heroDice + hStr;
             int enemyRoll = enemyDice + eStr;
-            if(heroDice + hStr > enemyDice + eStr)
+            if (heroDice + hStr > enemyDice + eStr)
             {
                 enemyHP = eHP - hDmg;
 
@@ -53,7 +53,7 @@ namespace ArenaFighter
                     Console.Write(enemyHP + ")\n----------\n");
                 Console.ReadKey(true);
             }
-            else if(heroDice + hStr < enemyDice + eStr)
+            else if (heroDice + hStr < enemyDice + eStr)
             {
                 heroHP = hHP - eDmg;
                 Console.WriteLine("----------\n" + "Rolls: You " + heroRoll + " (" + hStr + "+" + heroDice + ") vs "
@@ -62,13 +62,13 @@ namespace ArenaFighter
                 Console.WriteLine(name + " deals " + eDmg + " to " + "you");
                 Console.ForegroundColor = ConsoleColor.White;
                 Console.Write("Remaining Health: You (");
-                    if(heroHP <= 0)
+                if (heroHP <= 0)
                 {
                     Console.Write("Dead");
                     Console.Write("), " + name + " (" + enemyHP + ")\n----------\n");
                 }
-                    else
-                        Console.Write(heroHP + "), " + name + " (" + enemyHP + ")\n----------\n");
+                else
+                    Console.Write(heroHP + "), " + name + " (" + enemyHP + ")\n----------\n");
                 Console.ReadKey(true);
             }
             else
@@ -82,7 +82,7 @@ namespace ArenaFighter
                 Console.ReadKey(true);
             }
 
-                
+
         }
         public int EnemyHP
         {
