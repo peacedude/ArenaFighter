@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ArenaFighter
 {
-    class Round
+    public class Round
     {
         Random rnd = new Random(Guid.NewGuid().GetHashCode());
         Fight fight = new Fight();
@@ -22,7 +18,7 @@ namespace ArenaFighter
 
         public int ThrowDice()
         {
-            diceThrow = rnd.Next(1, 6);
+            diceThrow = rnd.Next(-30, 0);
             return diceThrow;
         }
 
@@ -39,7 +35,7 @@ namespace ArenaFighter
                 enemyHP = eHP - hDmg;
 
                 Console.WriteLine("----------\n" + "Rolls: You " + heroRoll + " (" + hStr + "+" + heroDice + ") vs "
-                    + name + " " + enemyRoll + "(" + eStr + "+" + enemyRoll + ")");
+                    + name + " " + enemyRoll + "(" + eStr + "+" + enemyDice + ")");
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine("You deal " + hDmg + " to " + name);
                 Console.ForegroundColor = ConsoleColor.White;
@@ -57,7 +53,7 @@ namespace ArenaFighter
             {
                 heroHP = hHP - eDmg;
                 Console.WriteLine("----------\n" + "Rolls: You " + heroRoll + " (" + hStr + "+" + heroDice + ") vs "
-                    + name + " " + enemyRoll + "(" + eStr + "+" + enemyRoll + ")");
+                    + name + " " + enemyRoll + "(" + eStr + "+" + enemyDice + ")");
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine(name + " deals " + eDmg + " to " + "you");
                 Console.ForegroundColor = ConsoleColor.White;
@@ -73,7 +69,7 @@ namespace ArenaFighter
             }
             else
             {
-                Console.WriteLine("----------");
+                Console.WriteLine("\n----------");
                 Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine("You both strike and miss");
                 Console.ForegroundColor = ConsoleColor.White;

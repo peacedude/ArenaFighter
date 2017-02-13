@@ -80,6 +80,10 @@ namespace ArenaFighter
             {
                 return score;
             }
+            set
+            {
+                score = value;
+            }
         }
 
         public bool Alive
@@ -167,7 +171,7 @@ namespace ArenaFighter
 
         public void GetChar()
         {
-            Console.WriteLine("Name: " + Name + "\nHealth: " + Health + "\nStrength: " + Strength + "\nDamage: " + Damage + "\nGold: " + gold + "\n");
+            Console.WriteLine("Name: {0}\nHealth: {1}\nStrength: {2}\nDamage: {3}\nGold: {4}\n", Name, Health, Strength, Damage, Gold);
         }
         public void AddScore()
         {
@@ -192,9 +196,9 @@ namespace ArenaFighter
             GetChar();
             Console.WriteLine("Press 'F' to fight\nPress 'S' to surrender");
             bool endLoop = false;
-            if (gold >= GoldCost)
+            if (Gold >= GoldCost)
             {
-                Console.WriteLine("\nPress D To Upgrade Damage. Cost: " + goldCost);
+                Console.WriteLine("\nPress D To Upgrade Damage. Cost: {0}", goldCost);
 
             }
 
@@ -231,7 +235,7 @@ namespace ArenaFighter
         public void GetStats()
         {
             Console.Clear();
-            Console.WriteLine("Final statistics:\n\nName: " + Name + "\nHealth: " + MaxHealth + "\nStrength: " + Strength + "\nDamage: " + Damage + "\nGold: " + gold + "\n\nScore: " + score + "\n");
+            Console.WriteLine("Final statistics:\n\nName: {0}\nHealth: {1}\nStrength: {2}\nDamage: {3}\nGold: {4}\n\nScore: {5}\n", Name, MaxHealth, Strength, Damage, Gold, Score);
             if (kills.Count > 0)
             {
                 Console.WriteLine("You killed: ");
@@ -246,7 +250,7 @@ namespace ArenaFighter
             {
                 Console.WriteLine("Killed by:");
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("You were killed by " + killer);
+                Console.WriteLine(killer);
                 Console.ForegroundColor = ConsoleColor.White;
             }
         }
@@ -264,7 +268,7 @@ namespace ArenaFighter
                 Damage = 30;
                 Gold = 30;
                 GoldCost = 1;
-                score = 0;
+                Score = 0;
 
             }
             else
@@ -278,43 +282,13 @@ namespace ArenaFighter
                 Damage = rnd.Next(1, 4);
                 if (heroName == "Gold") gold = 300;
                 else
-                    gold = 0;
+                    Gold = 0;
                 GoldCost = 1;
-                score = 0;
+                Score = 0;
             }
             if (heroName == null)
             {
-                string[] enemyNames;
-                enemyNames = new string[13];
-                enemyNames[0] = "Olof";
-                enemyNames[1] = "Hilda";
-                enemyNames[2] = "Per";
-                enemyNames[3] = "Brynhild";
-                enemyNames[4] = "Siv";
-                enemyNames[5] = "Arne";
-                enemyNames[6] = "Harald";
-                enemyNames[7] = "Ivar";
-                enemyNames[8] = "Olav";
-                enemyNames[9] = "Rolf";
-                enemyNames[10] = "RagnHild";
-                enemyNames[11] = "Gudrun";
-                enemyNames[12] = "Ulf";
-
-                string[] enemyLastNames;
-                enemyLastNames = new string[10];
-                enemyLastNames[0] = "Ahlberg";
-                enemyLastNames[1] = "Beck";
-                enemyLastNames[2] = "Blom";
-                enemyLastNames[3] = "Brand";
-                enemyLastNames[4] = "Brant";
-                enemyLastNames[5] = "Byquist";
-                enemyLastNames[6] = "Randel";
-                enemyLastNames[7] = "Thorburn";
-                enemyLastNames[8] = "Thurstan";
-                enemyLastNames[9] = "Westerberg";
-
-
-                Name = enemyNames[rnd.Next(0, 12)] + " " + enemyLastNames[rnd.Next(0, 10)];
+                Name = GenerateEnemyName();
 
             }
             else
@@ -322,6 +296,40 @@ namespace ArenaFighter
                 Name = heroName;
             }
 
+
+        }
+        private string GenerateEnemyName()
+        {
+            string[] enemyNames;
+            enemyNames = new string[13];
+            enemyNames[0] = "Olof";
+            enemyNames[1] = "Hilda";
+            enemyNames[2] = "Per";
+            enemyNames[3] = "Brynhild";
+            enemyNames[4] = "Siv";
+            enemyNames[5] = "Arne";
+            enemyNames[6] = "Harald";
+            enemyNames[7] = "Ivar";
+            enemyNames[8] = "Olav";
+            enemyNames[9] = "Rolf";
+            enemyNames[10] = "RagnHild";
+            enemyNames[11] = "Gudrun";
+            enemyNames[12] = "Ulf";
+
+            string[] enemyLastNames;
+            enemyLastNames = new string[10];
+            enemyLastNames[0] = "Ahlberg";
+            enemyLastNames[1] = "Beck";
+            enemyLastNames[2] = "Blom";
+            enemyLastNames[3] = "Brand";
+            enemyLastNames[4] = "Brant";
+            enemyLastNames[5] = "Byquist";
+            enemyLastNames[6] = "Randel";
+            enemyLastNames[7] = "Thorburn";
+            enemyLastNames[8] = "Thurstan";
+            enemyLastNames[9] = "Westerberg";
+
+            return enemyNames[rnd.Next(0, 12)] + " " + enemyLastNames[rnd.Next(0, 10)];
         }
     }
 }

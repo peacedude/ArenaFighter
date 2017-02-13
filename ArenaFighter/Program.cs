@@ -67,7 +67,7 @@ namespace ArenaFighter
                     }
                     if (hero.Health <= 0)
                     {
-                        Console.WriteLine(enemy.Name + "killed you in the arena!");
+                        Console.WriteLine("\n"+enemy.Name + "killed you in the arena!");
                         hero.SetKeepOn(false);
                         hero.Killer = enemy.Name;
                     }
