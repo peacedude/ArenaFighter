@@ -273,7 +273,7 @@ namespace ArenaFighter
             }
             else
             {
-                Strength = rnd.Next(4, 7);
+                Strength = rnd.Next(4, 8);
                 if (heroName == "Kill me")
                     Health = 1;
                 else

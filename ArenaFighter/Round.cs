@@ -18,7 +18,7 @@ namespace ArenaFighter
 
         public int ThrowDice()
         {
-            diceThrow = rnd.Next(-30, 0);
+            diceThrow = rnd.Next(1, 6);
             return diceThrow;
         }
 
